@@ -2,10 +2,14 @@ package application;
 	
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 
@@ -90,6 +95,8 @@ public class Main extends Application {
     @FXML
     private Button add_Picture;
     
+    private String was_Pressed;
+    
     
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -111,6 +118,12 @@ public class Main extends Application {
 	
 	@FXML
 	void pop_Up(ActionEvent event) throws IOException{
+		
+		if(event.getSource() == remove){
+			was_Pressed = "remove";
+		}else{
+			was_Pressed = "update";
+		}
 		Stage stage = new Stage();
 		Parent root;
 				
@@ -134,6 +147,19 @@ public class Main extends Application {
 	}
 	
 	@FXML
+	void yes_Click(ActionEvent event) throws IOException{
+		if(was_Pressed == "remove"){
+			
+		}else{
+			
+		}
+		
+		Stage stage;
+		stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+		stage.close();
+	}
+	
+	@FXML
 	void add_Item(ActionEvent event) throws IOException{
 		Stage stage = new Stage();
 		Parent root;
@@ -147,6 +173,31 @@ public class Main extends Application {
 		stage.setScene(scene);
 		stage.show();
 		
+	}
+	
+	@FXML
+	void add_Picture(ActionEvent event) throws IOException{
+		FileChooser choose = new FileChooser();
+		
+		choose.getExtensionFilters().add(new ExtensionFilter("Pictures", "*.jpg"));
+		File f = choose.showOpenDialog(null);
+		
+		if(f!=null){
+			FileInputStream inputstream = new FileInputStream(f.getAbsolutePath());
+			Image image = new Image(inputstream);
+			
+			add_Picture_Frame.setImage(image);
+		}
+		
+	}
+	
+	@FXML
+	void add_to_DB(ActionEvent event) throws IOException{
+		
+		
+		Stage stage;
+		stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+		stage.close();
 	}
 	
 }
