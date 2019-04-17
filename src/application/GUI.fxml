@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1254.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1254.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
    <children>
       <ImageView fx:id="item_Picture" fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="list" layoutX="50.0" layoutY="94.0" prefHeight="682.0" prefWidth="728.0" />
+      <ListView fx:id="list" layoutX="50.0" layoutY="94.0" onMouseClicked="#get_info" prefHeight="682.0" prefWidth="728.0" />
       <TextField fx:id="item_Name" layoutX="895.0" layoutY="356.0" />
       <TextField fx:id="item_ID" layoutX="895.0" layoutY="408.0" />
       <TextField fx:id="item_Color" layoutX="895.0" layoutY="460.0" />

@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 
+import pcClient.WaresOurStuffControl;
 
 public class Main extends Application {
 	@FXML
@@ -102,7 +103,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
 
-		
+		//TODO: load item from DB into ListView
 
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Wares My Stuff?");
@@ -149,9 +150,11 @@ public class Main extends Application {
 	@FXML
 	void yes_Click(ActionEvent event) throws IOException{
 		if(was_Pressed == "remove"){
-			
+			//remove item was confirmed
+			//TODO: remove item from DB
 		}else{
-			
+			//update item was confirmed
+			//TODO: update item with new attributes
 		}
 		
 		Stage stage;
@@ -194,10 +197,16 @@ public class Main extends Application {
 	@FXML
 	void add_to_DB(ActionEvent event) throws IOException{
 		
+		//TODO: add item to DB
 		
 		Stage stage;
 		stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
 		stage.close();
+	}
+	
+	@FXML
+	void get_info(ActionEvent event) throws IOException{
+		//TODO: display selected item in  text fields right of list
 	}
 	
 }
