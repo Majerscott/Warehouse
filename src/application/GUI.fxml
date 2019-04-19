@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="1254.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="894.0" prefWidth="651.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
    <children>
-      <ImageView fx:id="item_Picture" fitHeight="150.0" fitWidth="200.0" layoutX="895.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="list" layoutX="50.0" layoutY="94.0" onMouseClicked="#get_info" prefHeight="682.0" prefWidth="728.0" />
-      <TextField fx:id="item_Name" layoutX="895.0" layoutY="356.0" />
-      <TextField fx:id="item_ID" layoutX="895.0" layoutY="408.0" />
-      <TextField fx:id="item_Color" layoutX="895.0" layoutY="460.0" />
-      <TextField fx:id="item_Price" layoutX="895.0" layoutY="514.0" />
-      <TextField fx:id="item_Condition" layoutX="895.0" layoutY="618.0" />
-      <Text layoutX="895.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <Text layoutX="895.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-      <Text layoutX="896.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
-      <Text layoutX="897.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
-      <Text layoutX="895.0" layoutY="615.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" />
-      <TextField fx:id="item_Size" layoutX="895.0" layoutY="567.0" />
-      <Text layoutX="895.0" layoutY="563.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size" />
-      <TextField fx:id="item_Location" layoutX="893.0" layoutY="672.0" />
-      <Text layoutX="893.0" layoutY="668.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" />
-      <Button fx:id="update" layoutX="990.0" layoutY="710.0" mnemonicParsing="false" onAction="#pop_Up" text="Update" />
-      <Button fx:id="add" layoutX="575.0" layoutY="791.0" mnemonicParsing="false" onAction="#add_Item" text="Add Item" />
-      <Button fx:id="remove" layoutX="691.0" layoutY="791.0" mnemonicParsing="false" onAction="#pop_Up" text="Remove Item" />
+      <ImageView fx:id="item_Picture" fitHeight="150.0" fitWidth="200.0" layoutX="414.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="list" focusTraversable="false" layoutX="50.0" layoutY="94.0" onMouseClicked="#get_info" prefHeight="682.0" prefWidth="329.0" />
+      <TextField fx:id="item_Name" layoutX="439.0" layoutY="266.0" />
+      <TextField fx:id="item_ID" editable="false" layoutX="439.0" layoutY="318.0" />
+      <TextField fx:id="item_Color" layoutX="439.0" layoutY="370.0" />
+      <TextField fx:id="item_Price" layoutX="439.0" layoutY="424.0" />
+      <TextField fx:id="item_Condition" layoutX="439.0" layoutY="528.0" />
+      <Text layoutX="439.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="439.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <Text layoutX="440.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
+      <Text layoutX="441.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+      <Text layoutX="439.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" />
+      <TextField fx:id="item_Size" layoutX="439.0" layoutY="477.0" />
+      <Text layoutX="439.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size" />
+      <TextField fx:id="item_Location" layoutX="437.0" layoutY="582.0" />
+      <Text layoutX="437.0" layoutY="578.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" />
+      <Button fx:id="update" layoutX="534.0" layoutY="620.0" mnemonicParsing="false" onAction="#changeSceneToPop_Up" text="Update" />
+      <Button fx:id="add" layoutX="113.0" layoutY="787.0" mnemonicParsing="false" onAction="#changeSceneToAdd_Item" text="Add Item" />
+      <Button fx:id="remove" layoutX="229.0" layoutY="787.0" mnemonicParsing="false" onAction="#changeSceneToPop_Up" text="Remove Item" />
    </children>
 </AnchorPane>

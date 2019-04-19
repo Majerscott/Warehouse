@@ -6,25 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="892.0" prefWidth="731.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Main">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="475.0" prefWidth="559.0" style="-fx-background-color: gray;" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Add_ItemController">
    <children>
-      <ImageView fx:id="add_Picture_Frame" fitHeight="150.0" fitWidth="200.0" layoutX="349.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="add_Name" layoutX="116.0" layoutY="328.0" />
-      <TextField fx:id="add_ID" layoutX="116.0" layoutY="380.0" />
-      <TextField fx:id="add_Color" layoutX="116.0" layoutY="432.0" />
-      <TextField fx:id="add_Price" layoutX="116.0" layoutY="486.0" />
-      <TextField fx:id="add_Condition" layoutX="116.0" layoutY="590.0" />
-      <Text layoutX="116.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <Text layoutX="116.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
-      <Text layoutX="117.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
-      <Text layoutX="118.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
-      <Text layoutX="116.0" layoutY="587.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" />
-      <TextField fx:id="add_Size" layoutX="116.0" layoutY="539.0" />
-      <Text layoutX="116.0" layoutY="535.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size" />
-      <TextField fx:id="add_Location" layoutX="114.0" layoutY="644.0" />
-      <Text layoutX="114.0" layoutY="640.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" />
-      <Button fx:id="add_Item" layoutX="211.0" layoutY="682.0" mnemonicParsing="false" onAction="#add_to_DB" text="Add Item" />
-      <Text layoutX="115.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Image " />
-      <Button fx:id="add_Picture" layoutX="213.0" layoutY="274.0" mnemonicParsing="false" onAction="#add_Picture" text="Browse" />
+      <ImageView fx:id="add_Picture_Frame" fitHeight="150.0" fitWidth="200.0" layoutX="258.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="add_Name" layoutX="56.0" layoutY="110.0" />
+      <TextField fx:id="add_Color" layoutX="58.0" layoutY="164.0" />
+      <TextField fx:id="add_Price" layoutX="58.0" layoutY="218.0" />
+      <TextField fx:id="add_Condition" layoutX="58.0" layoutY="322.0" />
+      <Text layoutX="56.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <Text layoutX="59.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color" />
+      <Text layoutX="60.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
+      <Text layoutX="58.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" />
+      <TextField fx:id="add_Size" layoutX="58.0" layoutY="271.0" />
+      <Text layoutX="58.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Size" />
+      <TextField fx:id="add_Location" layoutX="58.0" layoutY="376.0" />
+      <Text layoutX="61.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Location" />
+      <Button fx:id="add_Item" layoutX="141.0" layoutY="419.0" mnemonicParsing="false" onAction="#add_to_DB" text="Add Item" />
+      <Text layoutX="55.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Image " />
+      <Button fx:id="add_Picture" layoutX="147.0" layoutY="56.0" mnemonicParsing="false" onAction="#add_Picture" text="Browse" />
    </children>
 </AnchorPane>

@@ -1,15 +1,16 @@
 package application;
 	
 
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,8 +18,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 
 import pcClient.WaresOurStuffControl;
@@ -43,7 +44,7 @@ public class Main extends Application {
     private ImageView item_Picture;
 
     @FXML
-    private ListView<?> list;
+    private ListView<String> list;
 
     @FXML
     private TextField item_Name;
@@ -73,9 +74,6 @@ public class Main extends Application {
     private TextField add_Name;
 
     @FXML
-    private TextField add_ID;
-
-    @FXML
     private TextField add_Color;
 
     @FXML
@@ -96,117 +94,131 @@ public class Main extends Application {
     @FXML
     private Button add_Picture;
     
-    private String was_Pressed;
-    
+	private ObservableList<String> listItems=FXCollections.observableArrayList();
+	
+    static String was_Pressed;
+	static WaresOurStuffControl ctrl=new WaresOurStuffControl();
+	static ArrayList<String> itemListArray=new ArrayList<>();	//itemArray[i] should hold ID of ListView[i]
     
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("GUI.fxml"));
-
-		//TODO: load item from DB into ListView
-
+		Parent root=FXMLLoader.load(getClass().getResource("GUI.fxml"));
 		Scene scene = new Scene(root);
-		primaryStage.setTitle("Wares My Stuff?");
+		primaryStage.setResizable(false);
+		primaryStage.setTitle("Wares Our Stuff?");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-
-
 	}
 	
+	@FXML
+	void initialize() {
+		list.setItems(listItems);
+
+		ctrl.connectToDB();
+		itemListArray.clear();					//clear item Array
+		list.getItems().setAll();				//clear ListView
+		ResultSet rs=ctrl.fetchInventory();		//load items from DB into ListView
+
+		try {
+			while(rs.next()) {					//load each row into an entry in ListView
+				String rsItemID=rs.getString("itemID");
+
+				list.getItems().add(rsItemID+" : "+rs.getString("itemName"));
+				itemListArray.add(rsItemID);
+			}
+		} catch (SQLException e) {
+			System.out.println("Failure populating ListView");
+			e.printStackTrace();
+		}		
+	}
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
 	@FXML
-	void pop_Up(ActionEvent event) throws IOException{
+	void changeSceneToPop_Up(ActionEvent event) throws IOException{
 		
-		if(event.getSource() == remove){
+		if(event.getSource() == remove){	//remove button pushed
 			was_Pressed = "remove";
-		}else{
+		}else{								//update button pushed
 			was_Pressed = "update";
 		}
-		Stage stage = new Stage();
-		Parent root;
-				
-		root = FXMLLoader.load(getClass().getResource("Pop_UP.fxml"));
 		
-		Scene scene = new Scene(root);
+		Item passingItem=new Item();
+		passingItem.setList(list);
+		passingItem.setItemName(item_Name.getText());
+		passingItem.setItemColor(item_Color.getText());
+		passingItem.setItemPrice(item_Price.getText());
+		passingItem.setItemSize(item_Size.getText());
+		passingItem.setItemCondition(item_Condition.getText());
+		passingItem.setItemLocation(item_Location.getText());
+		
+		//load scene
+		FXMLLoader loader=new FXMLLoader();
+		loader.setLocation(getClass().getResource("/application/Pop_Up.fxml"));
+		Parent root=loader.load();
+		Scene scene=new Scene(root);
+		
+		//grab controller from new scene
+		Pop_UpController controller=loader.getController();
+		//pass Item
+		controller.initData(passingItem);
+		
+		//set and show stage
+		Stage stage = new Stage();
 		stage.setResizable(false);
 		stage.setTitle("Are you Sure?");
 		stage.setScene(scene);
-		stage.show();
-		
+		stage.show();	
 	}
 	
 	@FXML
-	void close_PU(ActionEvent event) throws IOException{
-		Stage stage;
+	void changeSceneToAdd_Item(ActionEvent event) throws IOException{
 		
-		stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+		//store variables into Item
+		Item passingItem=new Item();
+		passingItem.setList(list);
 		
-		stage.close();
-	}
-	
-	@FXML
-	void yes_Click(ActionEvent event) throws IOException{
-		if(was_Pressed == "remove"){
-			//remove item was confirmed
-			//TODO: remove item from DB
-		}else{
-			//update item was confirmed
-			//TODO: update item with new attributes
-		}
+		//load scene
+		FXMLLoader loader=new FXMLLoader();
+		loader.setLocation(getClass().getResource("/application/Add_Item.fxml"));
+		Parent root=loader.load();
+		Scene scene=new Scene(root);
 		
-		Stage stage;
-		stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-		stage.close();
-	}
-	
-	@FXML
-	void add_Item(ActionEvent event) throws IOException{
+		//grab controller from new scene
+		Add_ItemController controller=loader.getController();
+		//pass Item
+		controller.initData(passingItem);
+		
+		//set and show stage
 		Stage stage = new Stage();
-		Parent root;
-		
-				
-		root = FXMLLoader.load(getClass().getResource("Add_Item.fxml"));
-		
-		Scene scene = new Scene(root);
 		stage.setResizable(false);
 		stage.setTitle("Add Item");
 		stage.setScene(scene);
-		stage.show();
-		
+		stage.show();	
 	}
 	
 	@FXML
-	void add_Picture(ActionEvent event) throws IOException{
-		FileChooser choose = new FileChooser();
+	void get_info(MouseEvent event) throws IOException{
 		
-		choose.getExtensionFilters().add(new ExtensionFilter("Pictures", "*.jpg"));
-		File f = choose.showOpenDialog(null);
+		String itemID=itemListArray.get(list.getSelectionModel().getSelectedIndex());
 		
-		if(f!=null){
-			FileInputStream inputstream = new FileInputStream(f.getAbsolutePath());
-			Image image = new Image(inputstream);
-			
-			add_Picture_Frame.setImage(image);
+		try {
+			ResultSet itemInfo = ctrl.getInfo(itemID);						//DB Query
+			itemInfo.next();												//move reader to start of info
+			item_Name.setText(itemInfo.getString("itemName"));
+			item_ID.setText(itemID);
+			item_Color.setText(itemInfo.getString("color"));
+			item_Price.setText(itemInfo.getString("price"));
+			item_Size.setText(itemInfo.getString("size"));
+			item_Condition.setText(itemInfo.getString("conditionName"));
+			item_Location.setText(itemInfo.getString("areaName"));
+
+			while(itemInfo.next()) {										//for items with multiple condition tags
+				item_Condition.setText(item_Condition.getText()+", "+itemInfo.getString("conditionName"));
+			}
+		} catch(SQLException e) {
+			System.out.println("Failure setting info text fields");
+			e.printStackTrace();
 		}
-		
 	}
-	
-	@FXML
-	void add_to_DB(ActionEvent event) throws IOException{
-		
-		//TODO: add item to DB
-		
-		Stage stage;
-		stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
-		stage.close();
-	}
-	
-	@FXML
-	void get_info(ActionEvent event) throws IOException{
-		//TODO: display selected item in  text fields right of list
-	}
-	
 }
